@@ -1,5 +1,5 @@
-%ul.compliance-list
-  %li= "MEDICINE: #{patient.print_compliance(type: "med_compliance")}"
-  %li= "EXERCISE: #{patient.print_compliance(type: "exer_compliance")}"
-  %li= "DIET: #{patient.print_compliance(type: "diet_compliance")}"
-  %li= "OTHER: #{patient.print_compliance(type: "other_compliance")}"
+%ul.hidden.compliance-list
+  %li{class: patient.print_compliance(type: "med_compliance")} MEDICINE
+  %li{class: patient.print_compliance(type: "exer_compliance")} EXERCISE
+  %li{class: patient.print_compliance(type: "diet_compliance")} DIET
+  %li{class: patient.print_compliance(type: "other_compliance")} OTHER

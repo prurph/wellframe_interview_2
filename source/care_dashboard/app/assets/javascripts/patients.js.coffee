@@ -1,3 +1,7 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+addClickHandlers = ->
+  $('.compliance-td').click (event) ->
+    $(this).children('.compliance-list').slideToggle().removeClass 'hidden'
+
+$(document).ready addClickHandlers
+# for Turbolinks
+$(document).on "page:load", addClickHandlers

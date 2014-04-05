@@ -5,7 +5,18 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
-    @patients = Patient.order("#{sort_column} #{sort_direction}")
+    if sort_column == "compliant?"
+      @patients = Patient.all.sort do |a,b|
+        if a.compliant? == b.compliant?
+          sort = 0
+        else
+          sort = a.compliant? ? 1 : -1
+        end
+        sort_direction == "desc" ? -sort : sort
+      end
+    else
+      @patients = Patient.order("#{sort_column} #{sort_direction}")
+    end
   end
 
   # GET /patients/1
@@ -78,6 +89,6 @@ class PatientsController < ApplicationController
   end
 
   def sort_column
-    Patient.column_names.include?(params[:sort]) ? params[:sort] : "last_name"
+    Patient.column_names.include?(params[:sort]) ? params[:sort] : "compliant?"
   end
 end
