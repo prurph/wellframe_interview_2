@@ -14,3 +14,58 @@
 
 @import "bootstrap";
 @import "flat-ui";
+@import "colors";
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: $orange;
+  &:hover {
+    color: $goldenrod;
+  }
+}
+
+thead {
+  background-color: $offwhite;
+  a {
+    color: $darkblue;
+    &:hover {
+      color: $lightblue;
+    }
+  }
+}
+
+.center-text {
+  text-align: center;
+}
+
+.compliance-td {
+  padding: 5px;
+  font-size: 1.1em;
+  color: white;
+}
+
+.compliance-list {
+  margin: 10px 0;
+  li {
+    margin: 3px 0;
+  }
+}
+
+/* !important overrides bootstrap sibling selectors that otherwise make
+background gray when another cell in same row is hovered */
+.compliant {
+  background-color: $brightgreen !important;
+  &:hover {
+    background-color: $lightgreen;
+  }
+}
+.noncompliant {
+  background-color: $brightred !important;
+  &:hover {
+    background-color: $lightred;
+  }
+}

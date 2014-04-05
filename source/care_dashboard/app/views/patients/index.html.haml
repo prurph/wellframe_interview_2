@@ -16,12 +16,15 @@
     %tbody
       - @patients.each do |patient|
         %tr
-          %td= link_to patient.name_last_comma_first, patient
+          %td
+            = mail_to patient.email do
+              %span.glyphicon.glyphicon-envelope
+            = link_to patient.name_last_comma_first, patient
           %td= "#{time_ago_in_words patient.last_contact} ago"
           %td= patient.print_progress
           %td= patient.print_today_completion
-          %td.compliance-td
+          %td.compliance-td.center-text{class: "#{patient.print_compliance}"}
             = patient.print_compliance.upcase
             = render partial: 'compliance_list', locals: {patient: patient}
-          %td= print_blank_if_zero patient.message_count
-          %td= print_blank_if_zero patient.alert_count
+          %td.center-text= print_blank_if_zero patient.message_count
+          %td.center-text= print_blank_if_zero patient.alert_count
