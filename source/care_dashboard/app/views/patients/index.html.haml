@@ -1,0 +1,41 @@
+%h1 Listing patients
+
+%table
+  %tr
+    %th First name
+    %th Last name
+    %th Program length
+    %th Program progress
+    %th Last contact
+    %th Task count
+    %th Task completion
+    %th Med compliance
+    %th Exer compliance
+    %th Diet compliance
+    %th Other compliance
+    %th Email
+    %th
+    %th
+    %th
+
+  - @patients.each do |patient|
+    %tr
+      %td= patient.first_name
+      %td= patient.last_name
+      %td= patient.program_length
+      %td= patient.program_progress
+      %td= patient.last_contact
+      %td= patient.task_count
+      %td= patient.task_completion
+      %td= patient.med_compliance
+      %td= patient.exer_compliance
+      %td= patient.diet_compliance
+      %td= patient.other_compliance
+      %td= patient.email
+      %td= link_to 'Show', patient
+      %td= link_to 'Edit', edit_patient_path(patient)
+      %td= link_to 'Destroy', patient, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Patient', new_patient_path

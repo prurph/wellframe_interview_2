@@ -1,0 +1,42 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = @patient.first_name
+%p
+  %b Last name:
+  = @patient.last_name
+%p
+  %b Program length:
+  = @patient.program_length
+%p
+  %b Program progress:
+  = @patient.program_progress
+%p
+  %b Last contact:
+  = @patient.last_contact
+%p
+  %b Task count:
+  = @patient.task_count
+%p
+  %b Task completion:
+  = @patient.task_completion
+%p
+  %b Med compliance:
+  = @patient.med_compliance
+%p
+  %b Exer compliance:
+  = @patient.exer_compliance
+%p
+  %b Diet compliance:
+  = @patient.diet_compliance
+%p
+  %b Other compliance:
+  = @patient.other_compliance
+%p
+  %b Email:
+  = @patient.email
+
+= link_to 'Edit', edit_patient_path(@patient)
+\|
+= link_to 'Back', patients_path

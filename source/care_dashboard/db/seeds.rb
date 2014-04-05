@@ -1,7 +1,66 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+patients = [
+  { first_name:       "Johny",
+    last_name:        "Flow",
+    program_length:   30,
+    program_progress: 25,
+    last_contact:    Time.new(2014,4,3),
+    task_count:       8,
+    task_completion:  5,
+    med_compliance:   true,
+    exer_compliance:  false,
+    diet_compliance:  true,
+    other_compliance: false,
+    email:            "jflow@wow.com",
+    message_count:    2,
+    alert_count:      0 },
+
+  { first_name:       "Raj",
+    last_name:        "Jamnis",
+    program_length:   30,
+    program_progress: 8,
+    last_contact:    Time.new(2014,4,2),
+    task_count:       7,
+    task_completion:  2,
+    med_compliance:   true,
+    exer_compliance:  true,
+    diet_compliance:  true,
+    other_compliance: true,
+    email:            "jamman505@hi.edu",
+    message_count:    0,
+    alert_count:      0 },
+
+  { first_name:       "Andrew",
+    last_name:        "Chung",
+    program_length:   30,
+    program_progress: 3,
+    last_contact:    Time.new(2014,4,1),
+    task_count:       8,
+    task_completion:  8,
+    med_compliance:   true,
+    exer_compliance:  true,
+    diet_compliance:  true,
+    other_compliance: true,
+    email:            "aaaaaaaaaaaandrew@chung.net",
+    message_count:    0,
+    alert_count:      1 },
+
+  { first_name:       "Michael",
+    last_name:        "Smith",
+    program_length:   60,
+    program_progress: 18,
+    last_contact:     Time.new(2014,4,4),
+    task_count:       6,
+    task_completion:  3,
+    med_compliance:   false,
+    exer_compliance:  false,
+    diet_compliance:  true,
+    other_compliance: false,
+    email:            "msmith@foobar.com",
+    message_count:    0,
+    alert_count:      0 }
+]
+
+patients.each do |patient_hash|
+  patient = Patient.new(patient_hash)
+  patient.save!
+end
