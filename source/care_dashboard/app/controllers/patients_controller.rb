@@ -1,10 +1,11 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_direction, :sort_column
 
   # GET /patients
   # GET /patients.json
   def index
-    @patients = Patient.all
+    @patients = Patient.order("#{sort_column} #{sort_direction}")
   end
 
   # GET /patients/1
@@ -62,13 +63,21 @@ class PatientsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_patient
-      @patient = Patient.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_patient
+    @patient = Patient.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def patient_params
-      params.require(:patient).permit(:first_name, :last_name, :program_length, :program_progress, :last_contact, :task_count, :task_completion, :med_compliance, :exer_compliance, :diet_compliance, :other_compliance, :email)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def patient_params
+    params.require(:patient).permit(:first_name, :last_name, :program_length, :program_progress, :last_contact, :task_count, :task_completion, :med_compliance, :exer_compliance, :diet_compliance, :other_compliance, :email)
+  end
+
+  def sort_direction
+    ["asc", "desc"].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  def sort_column
+    Patient.column_names.include?(params[:sort]) ? params[:sort] : "last_name"
+  end
 end
