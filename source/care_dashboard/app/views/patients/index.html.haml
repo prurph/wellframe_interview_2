@@ -20,6 +20,8 @@
           %td= "#{time_ago_in_words patient.last_contact} ago"
           %td= patient.print_progress
           %td= patient.print_today_completion
-          %td= patient.compliant? ? 'YES' : 'NO'
+          %td.compliance-td
+            = patient.print_compliance.upcase
+            = render partial: 'compliance_list', locals: {patient: patient}
           %td= print_blank_if_zero patient.message_count
           %td= print_blank_if_zero patient.alert_count
