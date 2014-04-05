@@ -1,4 +1,8 @@
 class Patient < ActiveRecord::Base
+  def compliant?
+    med_compliance && exer_compliance && diet_compliance && other_compliance
+  end
+
   def name_last_comma_first
     "#{last_name}, #{first_name}"
   end

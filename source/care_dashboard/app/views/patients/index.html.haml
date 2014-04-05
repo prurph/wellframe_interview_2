@@ -9,10 +9,9 @@
         %th= sortable 'last_contact'
         %th= sortable 'program_progress', 'Program Progress'
         %th= sortable 'task_completion', "Today's Progress"
-        %th Med compliance
-        %th Exer compliance
-        %th Diet compliance
-        %th Other compliance
+        %th= "Compliance"
+        %th= sortable 'message_count', 'Messages'
+        %th= sortable 'alert_count', 'Alerts'
 
     %tbody
       - @patients.each do |patient|
@@ -21,7 +20,6 @@
           %td= "#{time_ago_in_words patient.last_contact} ago"
           %td= patient.print_progress
           %td= patient.print_today_completion
-          %td= patient.med_compliance
-          %td= patient.exer_compliance
-          %td= patient.diet_compliance
-          %td= patient.other_compliance
+          %td= patient.compliant? ? 'YES' : 'NO'
+          %td= print_blank_if_zero patient.message_count
+          %td= print_blank_if_zero patient.alert_count
