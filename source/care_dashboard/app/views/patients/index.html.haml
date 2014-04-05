@@ -1,41 +1,27 @@
-%h1 Listing patients
+.subhead
+  %h1 Active Patients
 
-%table
-  %tr
-    %th First name
-    %th Last name
-    %th Program length
-    %th Program progress
-    %th Last contact
-    %th Task count
-    %th Task completion
-    %th Med compliance
-    %th Exer compliance
-    %th Diet compliance
-    %th Other compliance
-    %th Email
-    %th
-    %th
-    %th
+.col-xs-12
+  %table.table.table-hover.table-responsive
+    %thead
+      %tr
+        %th Name
+        %th Last Contact
+        %th Program Progress
+        %th Today's Progress
+        %th Med compliance
+        %th Exer compliance
+        %th Diet compliance
+        %th Other compliance
 
-  - @patients.each do |patient|
-    %tr
-      %td= patient.first_name
-      %td= patient.last_name
-      %td= patient.program_length
-      %td= patient.program_progress
-      %td= patient.last_contact
-      %td= patient.task_count
-      %td= patient.task_completion
-      %td= patient.med_compliance
-      %td= patient.exer_compliance
-      %td= patient.diet_compliance
-      %td= patient.other_compliance
-      %td= patient.email
-      %td= link_to 'Show', patient
-      %td= link_to 'Edit', edit_patient_path(patient)
-      %td= link_to 'Destroy', patient, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Patient', new_patient_path
+    %tbody
+      - @patients.each do |patient|
+        %tr
+          %td= link_to patient.name_last_comma_first, patient
+          %td= "#{time_ago_in_words patient.last_contact} ago"
+          %td= patient.print_progress
+          %td= patient.print_today_completion
+          %td= patient.med_compliance
+          %td= patient.exer_compliance
+          %td= patient.diet_compliance
+          %td= patient.other_compliance
