@@ -1,0 +1,17 @@
+#development:
+  adapter: postgresql
+  encoding: unicode
+  database: care_dashboard_development
+  pool: 5
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: care_dashboard_test
+  pool: 5
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: care_dashboard_production
+  pool: 5
